@@ -1,7 +1,7 @@
 import React from 'react';
 
 const DraftsSent = () => {
-  return <div>DraftsSent</div>;
+  return <div>Drafts & Sent</div>;
 };
 
 export default DraftsSent;

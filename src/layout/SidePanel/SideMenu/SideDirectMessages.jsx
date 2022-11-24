@@ -1,7 +1,7 @@
 import React from 'react';
 
 const SideDirectMessages = () => {
-  return <div>SideDirectMessage</div>;
+  return <div>Direct Message</div>;
 };
 
 export default SideDirectMessages;
