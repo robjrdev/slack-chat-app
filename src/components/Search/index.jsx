@@ -1,6 +1,6 @@
 import React from 'react';
 import { BiSearch } from 'react-icons/bi';
-import SearchInput from '../input/search'
+import SearchInput from '../input/search';
 
 export const Search = () => {
   return (
@@ -14,12 +14,12 @@ export const Search = () => {
     //     <button type="submit">
     //       <BiSearch />
     //     </button>
-    //   </form> 
-     
+    //   </form>
+
     // </div>
 
-    <div className='search'>
-       <SearchInput />
+    <div className="search">
+      <SearchInput />
     </div>
   );
 };
