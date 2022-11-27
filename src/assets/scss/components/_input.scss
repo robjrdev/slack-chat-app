@@ -1,18 +1,18 @@
 .input-container {
-  position:relative; 
-  width:100%;  
-  text-align:center;  
-  
+  position: relative;
+  width: 100%;
+  text-align: center;
+
   margin-left: 0;
-  
+
   border-radius: 0.5rem;
   display: flex;
   background-color: var(--background-color);
 
-  &__textbox {   
+  &__textbox {
     width: 93%;
     background-color: transparent;
-    border:none;
+    border: none;
     color: var(--text-color);
     padding: 0.2rem;
     border-radius: 0.5rem;
@@ -20,17 +20,17 @@
     box-sizing: border-box;
     // font-family: var(--font-serif) !important;
 
-    &:focus  {
-      outline: none;       
-      //  ~{        
-      //     .floating-placeholder {                 
+    &:focus {
+      outline: none;
+      //  ~{
+      //     .floating-placeholder {
       //       color: orange;
       //       font-size: 0.55rem;
       //       transform: translateY(-1.5rem);
       //     }
       //  }
     }
-    
+
     &:not(:placeholder-shown) + .input-placeholder {
       font-size: 0;
       transform: translateY(-0.5rem);
@@ -38,41 +38,41 @@
   }
 
   .input-placeholder {
-    position: absolute;    
+    position: absolute;
     font-size: 0.625rem;
     margin-top: 0.3rem;
     margin-left: 0.5rem;
-    left: 0;  
+    left: 0;
     top: 0;
     pointer-events: none;
     transition: all 0.7s;
     font-size: 1rem;
   }
 
-  .placeholder-icons-container {    
+  .placeholder-icons-container {
     margin-top: 0.4rem;
-    right: 0;  
-    top: 0;  
-    margin-right: 0.3rem;     
+    right: 0;
+    top: 0;
+    margin-right: 0.3rem;
     cursor: pointer;
-    font-size: 1.2rem;       
-    position: absolute; 
-          
+    font-size: 1.2rem;
+    position: absolute;
+
     .placeholder-button {
-      background-color: inherit; 
+      background-color: inherit;
       border: none;
-      color: #dc143c; 
+      color: #dc143c;
       transition: all 0.3s;
       &:hover {
-        color: #fff ;
+        color: #fff;
         cursor: pointer;
-        transform: scale(1.5);        
-        color: #fff;       
-      }      
+        transform: scale(1.5);
+        color: #fff;
+      }
       &:active {
         cursor: pointer;
-        transform: scale(1);        
-        color: #dc143c;       
+        transform: scale(1);
+        color: #dc143c;
       }
     }
   }
@@ -80,10 +80,10 @@
     position: absolute;
     font-size: 0.519rem;
     top: 3.3rem;
-    color:red; 
+    color: red;
     font-family: 'Helvetica', 'Arial';
     word-wrap: break-word;
-  }  
+  }
 }
 
 .search-input-container {
@@ -96,14 +96,16 @@
   padding: 0.5rem 0;
   min-width: 20%;
   background-color: #ccc;
-  color: #1f1f1f;  
+  color: #1f1f1f;
   z-index: 2;
   font-family: --font-sans;
   font-size: 1rem;
   margin-top: 0.5rem;
   max-height: 20rem;
   overflow-y: scroll;
-  &::-webkit-scrollbar { width: 0 !important }
+  &::-webkit-scrollbar {
+    width: 0 !important;
+  }
 }
 // .searched-item {
 //   &:hover {
@@ -114,8 +116,29 @@
 // }
 
 .searched-item:hover {
-    cursor: pointer;
-    background-color: #8080 !important;
-    color: #ccc;
+  cursor: pointer;
+  background-color: #8080 !important;
+  color: #ccc;
 }
 
+//Recipient field
+.recipient {
+  margin-bottom: 1rem;
+  height: 4rem;
+
+  .input-placeholder {
+    text-align: center;
+    margin-top: 0.9rem;
+  }
+}
+
+//Message field
+.message-field {
+  margin-top: 1rem;
+  height: 4rem;
+
+  .input-placeholder {
+    text-align: center;
+    margin-top: 1.3rem;
+  }
+}

@@ -21,10 +21,14 @@ const TextInput = forwardRef(({
   const [isValid, setIsValid] = useState({ show: false, message: "" });
   const [showPassword, setShowPassword] = useState(false);
 
+  //State Management for Functions
   useImperativeHandle(ref, () => ({
     clearValue() {
       setUserInput("");
     },
+    alertHere() {
+      alert('imperative')
+    }
   }));
 
   const onChangeInput = (e) => {

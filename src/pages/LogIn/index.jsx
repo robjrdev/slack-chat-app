@@ -30,6 +30,7 @@ const SignInForm = ({getProfile}) => {
       return
     }
 
+    console.log(loginAccount({ email: email, password: pword}))
     loginAccount({ email: email, password: pword}).then((credentials) => {
       (!_.isEmpty(credentials)) &&  overwriteProfile({ ...credentials });     
     })   
