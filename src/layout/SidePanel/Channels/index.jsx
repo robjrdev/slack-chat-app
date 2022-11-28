@@ -1,21 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AccordionMenu from '../../../components/AccordionMenu';
 import { AccordionItem } from '../../../components/AccordionMenu/AccordionItem';
 import ChannelItem from './ChannelItem';
 import { Link } from 'react-router-dom';
+import InputPlacholder from '../../../components/input/inputPlacholder';
+import ChannelForm from './ChannelForm';
+import { PopUpModal } from '../../../components/Modal';
 
 const Channels = () => {
+  const [ isShown, setIsShown] = useState(false);
+
+  const toggleModal = () => {
+    setIsShown(!isShown)
+  }
   return (
-    <div className="channels">
-      <AccordionMenu>
-        <AccordionItem id="menu" title="Channels">
+    <div className="channels flex-row">    
+      <AccordionMenu>   
+        <AccordionItem id="menu" title="Channels">        
           <ul>
             <li>
-              <Link to="/channelItem">Channel1</Link>
+              <ChannelItem/>
             </li>
           </ul>
         </AccordionItem>
       </AccordionMenu>
+      <button onClick={toggleModal}>Add Channel</button>
+      {isShown && (<PopUpModal className={isShown}>
+        <ChannelForm />
+      </PopUpModal>)}
     </div>
   );
 };
