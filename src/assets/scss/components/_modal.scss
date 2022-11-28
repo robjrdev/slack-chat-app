@@ -8,3 +8,16 @@
   color: #fff;
   cursor: pointer;
 }
+
+.pop-up-container {
+  position: absolute;
+  height: 30rem;
+  width: 30rem;
+  left: 10%;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background-color: var(--background-color);
+  
+}
