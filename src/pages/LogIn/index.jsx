@@ -38,7 +38,8 @@ const SignInForm = ({getProfile}) => {
     e.preventDefault();
   };
   return (
-    <div className="flex-column">      
+    <div className="flex-column login-form" style={{height: '12rem'}}>     
+      <div>Log In</div> 
       <TextInput ref={registryEmail} name="signmail" placeholderText="Enter Email Address" email/>
       <TextInput ref={registryPassword} name="signpw" placeholderText="Password" password/>
       <button onClick={handleLogin}>Sign In</button>
@@ -76,8 +77,8 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="flex-column">
-      <div>Registration Form</div>
+    <div className="flex-column login-form" style={{height:'15rem'}}>
+      <div>Create Account</div>
       <TextInput ref={registryEmail} name="registermail" placeholderText="Enter Email Address" email/>
       <TextInput ref={registryPassword} name="registerpw" placeholderText="Password" password/>
       <TextInput ref={registryPasswordConfirm} name="registerpwconfirm" placeholderText="Confirm Password" password/>
