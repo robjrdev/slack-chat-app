@@ -6,7 +6,7 @@ import { createChannel } from '../../../api/api';
 import userProfileStore from '../../../store/userProfile';
 import { _ } from 'lodash'
 
-const ChannelForm = () => {
+const ChannelForm = ({closeBtn}) => {
   const [channelName, setChannelName] = useState('');
   const [addMember, setAddMember] = useState([]);
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
@@ -39,9 +39,16 @@ const ChannelForm = () => {
 
   }
 
+  const handleCloseModal =(e) => {
+    //e.preventDefault()
+    closeBtn()
+
+  }
+
   return (
     // <PopUpModal>
     <form action="#" className="channel-form flex-column" onSubmit={handleSubmitChannel}>
+        <button className="" onClick={handleCloseModal}> X </button>
         <div className="channel-field input-container">
               <input
      
