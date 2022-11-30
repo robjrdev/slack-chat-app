@@ -13,6 +13,9 @@ const Channels = () => {
   const toggleModal = () => {
     setIsShown(!isShown)
   }
+  const closeModal = () => {
+    setIsShown(false)
+  }
   return (
     <div className="channels flex-row">    
       <AccordionMenu>   
@@ -26,7 +29,7 @@ const Channels = () => {
       </AccordionMenu>
       <button onClick={toggleModal}>Add Channel</button>
       {isShown && (<PopUpModal className={isShown}>
-        <ChannelForm />
+        <ChannelForm closeBtn = {closeModal}/>
       </PopUpModal>)}
     </div>
   );
