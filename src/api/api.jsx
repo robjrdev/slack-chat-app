@@ -67,3 +67,9 @@ export const getAllUsers = async (credentials = null) => {
   const {data} = await axios.get("http://206.189.91.54/api/v1/users",{ headers: credentials});
   return data.data
 };
+
+export const getAllChannels = async (credentials = null) => {
+  if (!credentials) return  
+  const {data} = await axios.get("http://206.189.91.54/api/v1/channels",{ headers: credentials});
+  return data.data
+};
