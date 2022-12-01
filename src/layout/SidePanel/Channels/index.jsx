@@ -20,9 +20,6 @@ const Channels = () => {
   const toggleModal = () => {
     setIsShown(!isShown)
   }
-  const closeModal = () => {
-    setIsShown(false)
-  }
   return (
     <div className="channels flex-row">    
       <AccordionMenu>   
