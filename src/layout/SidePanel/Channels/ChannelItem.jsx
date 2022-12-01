@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAllChannels } from '../../../api/api';
 import userProfileStore from '../../../store/userProfile';
 
-const ChannelItem = () => {
+const ChannelItem = ({channelArr = []}) => {
   const [channelList, setChannelList] = useState([]);
 
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
@@ -14,23 +14,32 @@ const ChannelItem = () => {
   );
 
   useEffect(() => {
-    LoadChannels();
-  }, []);
+    
+    if (Array.isArray(channelArr) && channelArr.length > 0 ) {
+      LoadChannels();
+    }
+  }, [channelArr]);
+
+
 
   const LoadChannels = async () => {
-    await setChannelList([]);
-    const arrVal = await getAllChannels(profile);
-    await setChannelList(arrVal);
+   
+      await setChannelList([]);
+      const arrVal = await getAllChannels(profile);
+      await setChannelList(arrVal);
+    
   };
+
+  // const LoadChannels = async () => {
+  //   await setChannelList([]);
+  //   const arrVal = await getAllChannels(profile);
+  //   await setChannelList(arrVal);
+  // };
   return (
-    <>
-      {/* <div>Channel1</div>
-    <div>Channel2</div> */}
+    <>    
       <div>
         {channelList.length > 0 &&
-          channelList
-
-            .map((obj, idx) => {
+          channelList.map((obj, idx) => {
               return (
                 <div key={idx} className="searched-item">
                   <div
