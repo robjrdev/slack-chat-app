@@ -8,18 +8,21 @@ import { Link } from 'react-router-dom';
 import { AiFillMessage } from 'react-icons/ai';
 import { FiLogOut } from 'react-icons/fi';
 import userProfileStore from '../../store/userProfile';
+import useReceiverStore from '../../store/receiverProfile';
 
 const SidePanel = () => {
-  const { profile, overwriteProfile, clearProfile } = userProfileStore(
+  const { clearProfile } = userProfileStore(
     state => ({
       profile: state.profile,
       overwriteProfile: state.overwriteProfile,
       clearProfile: state.clearProfile,
     })
   );
+  const { clearReceiver } = useReceiverStore()
   
   const handleLogOut = () => {
     clearProfile();
+    clearReceiver();
   };
 
   return (

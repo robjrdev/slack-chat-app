@@ -58,11 +58,43 @@ export const sendChannelMessage = (credentials = null) => {};
 
 export const getChannelMessage = (credentials = null) => {};
 
-export const sendDirectMessage = (credentials = null) => {
-  console.log(credentials)
+export const sendDirectMessage = async (credentials = null) => {
+
+  if(!credentials) return;
+  await axios.post("http://206.189.91.54/api/v1/messages", {
+   receiver_id: credentials.receiver_id,
+   receiver_class: credentials.receiver_class,
+   body: credentials.body,
+ },{headers: credentials.header}).then((res) => {
+   console.log(res);
+   alert("Message Sent");
+ })
+ .catch((ex) => {
+   alert("Something went wrong. Please check the server API and try again");
+   console.error(ex);
+ }); 
+  
 };
 
-export const getDirectMessages = (credentials = null) => {};
+export const getDirectMessages = async (credentials = null, receiver = null) => {
+  if (!credentials || !receiver) return  
+ try {
+  const {data} = await axios.get(`http://206.189.91.54/api/v1/messages?receiver_id=${receiver.receiver_id}&receiver_class=${receiver.receiver_class}`, { headers: credentials.header},
+  // { receiver_id: credentials.receiver_id,
+  //   receiver_class: credentials.receiver_class},
+ )
+//  const response = await axios.get("http://206.189.91.54/api/v1/messages?receiver_id=2986&receiver_class=User", { headers: credentials.header},
+//   { receiver_id: credentials.receiver_id,
+//     receiver_class: credentials.receiver_class},
+//  )
+//  console.log(response)
+console.log(data)
+  return data.data}
+  catch {
+    // alert("Something went wrong. Please check the server API and try again");
+    return []
+  }
+};
 
 export const getAllUsers = async (credentials = null) => {  
   if (!credentials) return  
