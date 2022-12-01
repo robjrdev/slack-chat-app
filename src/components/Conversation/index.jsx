@@ -20,8 +20,9 @@ const Conversation = ({receiver_id}) => {
  
 
   const LoadConversation = async () => {
+    debugger
     await setConversationList([]);
-    const arrVal = await getDirectMessages({header: profile},{receiver_id: receiver_id, receiver_class:'User'});   
+    const arrVal = await getDirectMessages({header: profile}, receiver_id, 'User');   
     await setConversationList(arrVal);
     // debugger
 };
