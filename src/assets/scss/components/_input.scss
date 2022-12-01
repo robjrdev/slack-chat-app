@@ -92,6 +92,7 @@
 }
 
 .searched-item-container {
+  position: absolute;
   border-radius: 0.5rem;
   padding: 0.5rem 0;
   min-width: 20%;
@@ -107,19 +108,20 @@
     width: 0 !important;
   }
 }
-// .searched-item {
-//   &:hover {
-//     cursor: pointer;
-//     background-color: #8080;
-//     color: #ccc;
-//   }
-// }
-
-.searched-item:hover {
-  cursor: pointer;
-  background-color: #8080 !important;
-  color: #ccc;
+.searched-item {
+  margin-bottom: 0.2rem;
+  &:hover {
+    cursor: pointer;
+    background-color: #153BF1 !important;
+    color: #ccc;
+  }
 }
+
+// .searched-item:hover {
+//   cursor: pointer;
+//   background-color: #153BF1 !important;
+//   color: #ccc;
+// }
 
 //Recipient field
 .recipient {
