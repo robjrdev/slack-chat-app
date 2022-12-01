@@ -43,8 +43,7 @@ const ChannelForm = () => {
     // <PopUpModal>
     <form action="#" className="channel-form flex-column" onSubmit={handleSubmitChannel}>
         <div className="channel-field input-container">
-              <input
-     
+              <input    
                 className="input-container__textbox"
                 value={channelName}
                 onChange={newChannel}

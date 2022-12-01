@@ -58,7 +58,9 @@ export const sendChannelMessage = (credentials = null) => {};
 
 export const getChannelMessage = (credentials = null) => {};
 
-export const sendDirectMessage = (credentials = null) => {};
+export const sendDirectMessage = (credentials = null) => {
+  console.log(credentials)
+};
 
 export const getDirectMessages = (credentials = null) => {};
 

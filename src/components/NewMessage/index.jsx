@@ -1,13 +1,30 @@
 import React, { useState } from 'react';
 import { BiSend } from 'react-icons/bi';
+import { sendDirectMessage } from '../../api/api';
 import InputPlacholder from '../input/inputPlacholder';
 import TextInput from '../input/textBox';
 import { Modal } from '../Modal';
+import Search from '../Search';
+import useReceiverStore from '../../store/receiverProfile';
+import userProfileStore from '../../store/userProfile';
+import { _ } from 'lodash'
 
 export const NewMessage = () => {
   const [message, setMessage] = useState('');
   const [displayMessage, setDisplayMessage] = useState([]);
-  console.log(displayMessage);
+  const { receiver, overwriteReceiver, clearReceiver } = useReceiverStore(
+    state => ({
+      receiver: state.receiver,
+      overwriteReceiver: state.overwriteReceiver,
+      clearReceiver: state.clearReceiver,
+  })) 
+  const { profile, overwriteProfile, clearProfile } = userProfileStore(
+    (state) => ({
+      profile: state.profile,
+      overwriteProfile: state.overwriteProfile,
+      clearProfile: state.clearProfile,
+    })
+  );
 
   const newMessage = e => {
     e.preventDefault();
@@ -17,12 +34,16 @@ export const NewMessage = () => {
 
   const sendMessage = e => {
     e.preventDefault();
-    setDisplayMessage([...displayMessage, message]);
+    // setDisplayMessage([...displayMessage, message]);
+  
+    sendDirectMessage({receiver_id: receiver.receiver_id, recever_class: 'User', body: message, header: profile}).then((credentials) => {
+      (!_.isEmpty(credentials)) &&  overwriteReceiver({ ...credentials });     
+    })   
     setMessage('');
   };
   return (
     <div className="new-message flex-column">
-      <div className="recipient input-container">
+      {/* <div className="recipient input-container">
         <input
           className="input-container__textbox"
           placeholder=" "
@@ -30,7 +51,7 @@ export const NewMessage = () => {
           autoCorrect="off"
         ></input>
         <InputPlacholder display="Recipient" />
-      </div>
+      </div> */}
       <div className="conversation flex-row">{displayMessage}</div>
       <form className="message-form flex-row" onSubmit={sendMessage}>
         {/* <input
