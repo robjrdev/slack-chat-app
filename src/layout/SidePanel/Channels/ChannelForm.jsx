@@ -50,8 +50,7 @@ const ChannelForm = ({closeBtn}) => {
     <form action="#" className="channel-form flex-column" onSubmit={handleSubmitChannel}>
         <button className="" onClick={handleCloseModal}> X </button>
         <div className="channel-field input-container">
-              <input
-     
+              <input    
                 className="input-container__textbox"
                 value={channelName}
                 onChange={newChannel}

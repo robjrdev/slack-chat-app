@@ -8,11 +8,18 @@ import InputPlacholder from '../input/inputPlacholder';
 import { ClearTextIcon } from '../input/inputIcons';
 import { getAllUsers } from '../../api/api';
 import userProfileStore from '../../store/userProfile';
+import useReceiverStore from '../../store/receiverProfile';
 
 const Search = forwardRef(({}, ref) => {
   const [userInput, setUserInput] = useState('');
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+  const { receiver, overwriteReceiver, clearReceiver } = useReceiverStore(
+    state => ({
+      receiver: state.receiver,
+      overwriteReceiver: state.overwriteReceiver,
+      clearReceiver: state.clearReceiver,
+  })) 
 
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
     state => ({
@@ -43,8 +50,13 @@ const Search = forwardRef(({}, ref) => {
     setUserInput(e.target.value);
   };
 
-  const thisisCode = () => {
-    alert('test');
+  const thisisCode = ({uid, id}) => { 
+    const info = {
+      receiver_id: id,
+      receiver_uid: uid,
+    }
+   overwriteReceiver(
+   info);
   };
   return (
     <div className="search-input-container">
@@ -86,7 +98,7 @@ const Search = forwardRef(({}, ref) => {
                       <div
                         style={{ padding: '0 0.5rem' }}
                         data-usercode={obj.id}
-                        onClick={thisisCode}
+                        onClick={()=>{thisisCode({uid: obj.uid, id: obj.id})}}
                       >
                         <div>{obj.uid}</div>
                       </div>

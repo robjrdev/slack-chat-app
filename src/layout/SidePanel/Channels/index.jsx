@@ -10,6 +10,13 @@ import { PopUpModal } from '../../../components/Modal';
 const Channels = () => {
   const [ isShown, setIsShown] = useState(false);
 
+  const showModal = () => {
+    setIsShown(true)
+  }
+  const closeModal = () => {
+    setIsShown(false)
+  }
+
   const toggleModal = () => {
     setIsShown(!isShown)
   }
