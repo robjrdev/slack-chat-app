@@ -48,7 +48,9 @@ export const NewMessage = () => {
      <p style={{marginLeft:'.5rem'}}>{!receiver ? '' : receiver.receiver_uid} </p>
     </div>
       <div className="conversation flex-row">
-        <Conversation receiver_id={!receiver ? '' : receiver.receiver_id}/>
+        {/* <Conversation receiver_id={!receiver ? '' : receiver.receiver_id}/> */}
+        <Conversation receiver_id={receiver && receiver.receiver_id}/>
+
       </div>
       <form className="message-form flex-row" onSubmit={sendMessage}>
         <div className="message-field input-container">
