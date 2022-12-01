@@ -23,12 +23,12 @@ const ChannelItem = ({channelArr = []}) => {
 
 
   const LoadChannels = async () => {
-   
       await setChannelList([]);
       const arrVal = await getAllChannels(profile);
       await setChannelList(arrVal);
     
   };
+  
 
   // const LoadChannels = async () => {
   //   await setChannelList([]);

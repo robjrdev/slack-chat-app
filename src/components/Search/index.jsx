@@ -1,9 +1,4 @@
-import React, {
-  useState,
-  useEffect,
-  useImperativeHandle,
-  forwardRef,
-} from 'react';
+import React, { useState, useEffect, useImperativeHandle, forwardRef,} from 'react';
 import InputPlacholder from '../input/inputPlacholder';
 import { ClearTextIcon } from '../input/inputIcons';
 import { getAllUsers } from '../../api/api';
@@ -55,8 +50,8 @@ const Search = forwardRef(({}, ref) => {
       receiver_id: id,
       receiver_uid: uid,
     }
-   overwriteReceiver(
-   info);
+   overwriteReceiver(info);
+   setUserInput('')
   };
   return (
     <div className="search-input-container">

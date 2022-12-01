@@ -8,6 +8,7 @@ import Search from '../Search';
 import useReceiverStore from '../../store/receiverProfile';
 import userProfileStore from '../../store/userProfile';
 import { _ } from 'lodash'
+import Conversation from '../Conversation';
 
 export const NewMessage = () => {
   const [message, setMessage] = useState('');
@@ -35,31 +36,21 @@ export const NewMessage = () => {
   const sendMessage = e => {
     e.preventDefault();
     // setDisplayMessage([...displayMessage, message]);
-  
-    sendDirectMessage({receiver_id: receiver.receiver_id, recever_class: 'User', body: message, header: profile}).then((credentials) => {
+    sendDirectMessage({receiver_id: receiver.receiver_id, receiver_class: 'User', body: message, header: profile}).then((credentials) => {
       (!_.isEmpty(credentials)) &&  overwriteReceiver({ ...credentials });     
     })   
     setMessage('');
   };
   return (
     <div className="new-message flex-column">
-      {/* <div className="recipient input-container">
-        <input
-          className="input-container__textbox"
-          placeholder=" "
-          autoComplete="off"
-          autoCorrect="off"
-        ></input>
-        <InputPlacholder display="Recipient" />
-      </div> */}
-      <div className="conversation flex-row">{displayMessage}</div>
+    <div className="recipient flex-row">
+      <h3>Recipient :</h3>
+     <p style={{marginLeft:'.5rem'}}>{!receiver ? '' : receiver.receiver_uid} </p>
+    </div>
+      <div className="conversation flex-row">
+        <Conversation receiver_id={!receiver ? '' : receiver.receiver_id}/>
+      </div>
       <form className="message-form flex-row" onSubmit={sendMessage}>
-        {/* <input
-          type="text-area"
-          placeholder="New Message"
-          value={message}
-          onChange={newMessage}
-        /> */}
         <div className="message-field input-container">
           <input
             className="input-container__textbox"
