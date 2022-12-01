@@ -4,9 +4,10 @@ import { BiSend } from 'react-icons/bi';
 import InputPlacholder from '../../../components/input/inputPlacholder';
 import { createChannel } from '../../../api/api';
 import userProfileStore from '../../../store/userProfile';
-import { _ } from 'lodash'
+import { _ } from 'lodash';
+import { TransparentButton } from '../../../components/Button';
 
-const ChannelForm = ({closeBtn}) => {
+const ChannelForm = ({closeBtn, reloadChannel}) => {
   const [channelName, setChannelName] = useState('');
   const [addMember, setAddMember] = useState([]);
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
@@ -35,20 +36,22 @@ const ChannelForm = ({closeBtn}) => {
       })   
       setAddMember('')
       setChannelName('')
+      closeBtn()
+      reloadChannel();
     }
-
+    
   }
 
   const handleCloseModal =(e) => {
     //e.preventDefault()
-    closeBtn()
-
+    closeBtn();
+   
   }
 
   return (
     // <PopUpModal>
     <form action="#" className="channel-form flex-column" onSubmit={handleSubmitChannel}>
-        <button className="" onClick={handleCloseModal}> X </button>
+        <TransparentButton buttonClick={handleCloseModal}/>
         <div className="channel-field input-container">
               <input    
                 className="input-container__textbox"
