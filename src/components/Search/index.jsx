@@ -5,8 +5,6 @@ import { getAllUsers } from '../../api/api';
 import userProfileStore from '../../store/userProfile';
 import useReceiverStore from '../../store/receiverProfile';
 import useContactsStore from '../../store/userContacts';
-import { SearchIcons } from '../input/inputIcons';
-import { BiSearchAlt } from 'react-icons/bi';
 
 const Search = forwardRef(({}, ref) => {
   const [userInput, setUserInput] = useState('');
