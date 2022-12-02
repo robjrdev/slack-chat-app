@@ -3,6 +3,7 @@ import { loginAccount, createNewAccount } from "../../api/api";
 import userProfileStore from "../../store/userProfile";
 import TextInput from "../../components/input/textBox";
 import { _ } from 'lodash'
+import { RoundedButton } from "../../components/Button";
 
 const SignInForm = ({getProfile}) => {  
   const registryEmail = useRef();
@@ -42,7 +43,7 @@ const SignInForm = ({getProfile}) => {
       <div>Log In</div> 
       <TextInput ref={registryEmail} name="signmail" placeholderText="Enter Email Address" email/>
       <TextInput ref={registryPassword} name="signpw" placeholderText="Password" password/>
-      <button onClick={handleLogin}>Sign In</button>
+      <RoundedButton buttonClick={handleLogin}/>
     </div>
   );  
 };

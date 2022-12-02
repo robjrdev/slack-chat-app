@@ -9,6 +9,8 @@ import { ClearTextIcon } from '../input/inputIcons';
 import { getAllUsers } from '../../api/api';
 import userProfileStore from '../../store/userProfile';
 import useReceiverStore from '../../store/receiverProfile';
+import { SearchIcons } from '../input/inputIcons';
+import { BiSearchAlt } from 'react-icons/bi';
 
 const Search = forwardRef(({}, ref) => {
   const [userInput, setUserInput] = useState('');
@@ -71,6 +73,7 @@ const Search = forwardRef(({}, ref) => {
           autoCorrect="off"
         ></input>
         <InputPlacholder display="Search Email..." />
+        {userInput.trim() === '' && <SearchIcons/>}
         {userInput.trim() !== '' && (
           <div
             className="placeholder-icons-container"
