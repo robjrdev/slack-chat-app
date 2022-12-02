@@ -29,7 +29,7 @@ export const loginAccount = async (credentials = null) => {
 
   console.log(response)
   alert("Login Success")
-  return response.headers
+  return {...response.headers, id: response.data.data.id}
   } catch {
     alert("Something went wrong. Please check the server API and try again");
   }
@@ -81,7 +81,6 @@ export const getDirectMessages = async (
   receiver_id = 1, 
   receiver_class = "User"
 ) => {
-  debugger;
   try {
     const { data } = await axios.get(
       // `http://206.189.91.54/api/v1/messages?receiver_id=${receiver_id.trim() === "" ? "1" : receiver_id}&receiver_class=${receiver_class}`,
@@ -92,7 +91,6 @@ export const getDirectMessages = async (
       //   receiver_class: credentials.receiver_class}, 
     );
 
-    console.log(data);
     return data.data;
   } catch {
     // alert("Something went wrong. Please check the server API and try again");

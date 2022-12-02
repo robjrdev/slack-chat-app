@@ -19,20 +19,24 @@ const Conversation = ({receiver_id}) => {
   },[receiver_id]);
  
 
-  const LoadConversation = async () => {
-    debugger
+  const LoadConversation = async () => {    
     await setConversationList([]);
-    const arrVal = await getDirectMessages({header: profile}, receiver_id, 'User');  const arrValues = await [...new Map(arrVal.map(item => [item['id'], item])).values()]
+    const arrVal = await getDirectMessages({header: profile}, receiver_id, 'User');  
+    const arrValues = await [...new Map(arrVal.map(item => [item['id'], item])).values()]
     await setConversationList(arrValues);
-    // debugger
 };
-//  console.log(conversationList)
+
+console.log(conversationList);
+
   return (
-    <div>{conversationList.length > 0 && conversationList.map((obj, idx) => 
-      (<div className="conversation-text" key={idx}>
-        {obj.body}
-      </div>)
-    )}</div>
+    <>   
+      {conversationList.length > 0 && conversationList.map((obj, idx) => 
+      {return <div className="conversation-text" key={idx} style={{textAlign: `${obj.receiver.id === receiver_id && 'right'}`, alignSelf: `${obj.receiver.id === receiver_id && 'end'}`}}>
+        <div className="sender-name">{obj.sender.uid}</div>
+        <div className="conversation-body">{obj.body}</div>
+      </div>}
+      )}
+    </>
   )
 }
 
