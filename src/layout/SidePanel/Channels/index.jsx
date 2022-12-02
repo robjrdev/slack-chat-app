@@ -59,7 +59,7 @@ const Channels = () => {
           </ul>
         </AccordionItem>
       </AccordionMenu>
-      <button onClick={toggleModal}>Add Channel</button>
+      <button className = "add-chan" onClick={toggleModal}>Add Channel</button>
       {isShown && (<PopUpModal className={isShown}>
         <ChannelForm closeBtn = {closeModal} reloadChannel={reloadChannel}/>
       </PopUpModal>)}
