@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 
 export const TransparentButton = ({displayText = "X", buttonClick}) => {
   return (
@@ -9,7 +9,7 @@ export const TransparentButton = ({displayText = "X", buttonClick}) => {
 }
 
 
-export const RoundedButton = ({ displayText = "Submit", buttonClick, disable=false }) => {
+export const RoundedButton = ({ displayText = "Sign In", buttonClick, disable=false }) => {
   const[isDisabled, setIsDisabled] = useState(true)
   useEffect(() => {
     setIsDisabled(disable)
