@@ -35,6 +35,7 @@ const ChannelItem = ({channelArr = []}) => {
   //   const arrVal = await getAllChannels(profile);
   //   await setChannelList(arrVal);
   // };
+  console.log(channelList);
   return (
     <>    
       <div>

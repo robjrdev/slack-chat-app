@@ -3,16 +3,42 @@
   justify-content: space-between;
   padding: 1rem 0;
 
+  .recipient {
+    margin: 0;
+  }
+  .recipient-name {
+    border-bottom: 1px solid white;
+  }
+
   .conversation {
+    font-size: 1.2rem;
     height: 100%;
     border: 1px solid white;
     border-radius: 1rem;
-  };
+    padding: 1rem;
+    overflow-y: scroll;
+    &::-webkit-scrollbar { width: 0 !important }
+
+    .conversation-text {
+      background-color: var(--background-color);     
+      letter-spacing: 1px;
+      margin: .8rem 0;
+      border-radius: 2rem;
+      padding: .1rem 1.5rem;
+      width: fit-content;
+    }
+    .sender-name { 
+      font-weight: 700;
+      font-size: .8rem;
+      padding: .2rem 0;
+    }
+    .conversation-body {
+      padding: .2rem 0;
+    }
+  } ;
 
   .message-form {
     height: 5rem;
     align-items: center;
   }
-
-
 }

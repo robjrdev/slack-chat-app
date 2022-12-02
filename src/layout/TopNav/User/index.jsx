@@ -1,7 +1,9 @@
 import React from 'react';
+import userProfileStore from '../../../store/userProfile';
 
 const User = () => {
-  return <div className="user">User</div>;
+  const {profile} = userProfileStore();
+  return <div className="user">{profile.uid}</div>;
 };
 
-export default User;
+export default User ;

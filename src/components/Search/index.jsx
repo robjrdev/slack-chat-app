@@ -1,14 +1,17 @@
 import React, { useState, useEffect, useImperativeHandle, forwardRef,} from 'react';
 import InputPlacholder from '../input/inputPlacholder';
-import { ClearTextIcon } from '../input/inputIcons';
+import { ClearTextIcon, SearchIcons } from '../input/inputIcons';
 import { getAllUsers } from '../../api/api';
 import userProfileStore from '../../store/userProfile';
 import useReceiverStore from '../../store/receiverProfile';
+import useContactsStore from '../../store/userContacts';
 
 const Search = forwardRef(({}, ref) => {
   const [userInput, setUserInput] = useState('');
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+  const addContact = useContactsStore((state) => state.addContact)
+  const contacts = useContactsStore((state) => state.contacts)
   const { receiver, overwriteReceiver, clearReceiver } = useReceiverStore(
     state => ({
       receiver: state.receiver,
@@ -46,11 +49,16 @@ const Search = forwardRef(({}, ref) => {
   };
 
   const thisisCode = ({uid, id}) => { 
-    const info = {
+    const receiverInfo = {
       receiver_id: id,
       receiver_uid: uid,
+    };
+     const contactInfo = {  
+      contact_id: id,
+      contact_uid: uid,
     }
-   overwriteReceiver(info);
+   overwriteReceiver(receiverInfo);
+   addContact(contactInfo);
    setUserInput('')
   };
   return (
