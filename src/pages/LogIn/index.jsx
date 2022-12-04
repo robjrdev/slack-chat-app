@@ -44,7 +44,7 @@ const SignInForm = ({getProfile}) => {
 
   const formValidation = () => {
     const hasInvalid = document.querySelectorAll('.validation');
-
+    debugger
     if (hasInvalid.length > 0 ) {
       setIsDisabled(true)
     } else {
@@ -93,9 +93,8 @@ const SignUpForm = () => {
     clearTransaction();
   }
 
-  const formValidation = () => {
-    const hasInvalid = document.querySelectorAll('.validation');
-
+  const formValidation =  () => {
+    const hasInvalid =  document.querySelectorAll('.validation');
     if (hasInvalid.length > 0 ) {
       setIsDisabled(true)
     } else {

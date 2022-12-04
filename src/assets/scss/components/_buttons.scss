@@ -20,7 +20,7 @@
   background-color: transparent;
   border: none;
   font-size: 1.3rem;
-
+  filter:contrast(0);
   &:hover {
     cursor: pointer;
   }
@@ -28,6 +28,8 @@
 
 .add-chan {
     max-height: 2rem;
+    background-color: transparent;
+    border: none;
 //   box-sizing: border-box;
 //   appearance: none;
 //   background-color: transparent;

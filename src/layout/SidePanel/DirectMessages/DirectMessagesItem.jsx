@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import useReceiverStore from '../../../store/receiverProfile';
 
 const DirectMessagesItem = ({contacts}) => {
@@ -26,18 +26,10 @@ const DirectMessagesItem = ({contacts}) => {
       receiver_id: id,
       receiver_uid: uid,
     };   
-   overwriteReceiver(receiverInfo);
-  //  alert(uid)
-  //  alert(id)
-  //  addContact(contactInfo);
-  //  setUserInput('')
+   overwriteReceiver(receiverInfo); 
    location.reload();
-  //  setInterval( setUserInput(''),2000)
   };
-  
-  // if(contacts.length === 0) {
-  //   return <div>No Contacts Available</div>
-  // }
+
   return(
     <>
       {myContacts.length > 0 &&
@@ -57,6 +49,7 @@ const DirectMessagesItem = ({contacts}) => {
           );
         })}
       {myContacts.length === 0 && <div>No Contacts Available</div>}
+     
     </>
       // <>
       // {contacts.map((obj, idx) => {

@@ -42,9 +42,9 @@ const ChannelItem = ({channelArr = []}) => {
         {channelList.length > 0 &&
           channelList.map((obj, idx) => {
               return (
-                <div key={idx} className="searched-item">
+                <div key={idx} className="side-panel-items">
                   <div
-                    style={{ padding: '0 0.5rem' }}
+                    style={{ padding: '0 0.2rem' }}
                     // data-usercode={obj.id}
                     // onClick={thisisCode}
                   >
