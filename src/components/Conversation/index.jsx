@@ -48,6 +48,12 @@ const RealTimeConversation = async () => {
   window.store.direcMessage !== arrValues && setConversationList(arrValues)
 };
 
+ 
+const lastRecord = useRef();
+useEffect(() => {
+  lastRecord.current.scrollIntoView({ behavior: "smooth" });
+}, [conversationList]);
+
   return (
     <>   
       { conversationList.length > 0 && conversationList.map((obj, idx) => 
@@ -56,6 +62,7 @@ const RealTimeConversation = async () => {
         <div className="conversation-body">{obj.body}</div>
       </div>}
       )}
+       <div ref={lastRecord} />
       {/* {conversationList.length === 0 && <HeliLoad />} */}
     </>
   )
