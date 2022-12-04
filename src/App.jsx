@@ -4,6 +4,12 @@ import SignUp from './pages/SignUp';
 import LogIn from './pages/LogIn';
 import TopNav from './layout/TopNav';
 import userProfileStore from "./store/userProfile";
+import React, { useEffect } from 'react'
+
+window.store = {
+  mainSearch: '',
+  direcMessage: [],  
+};
 
 
 
@@ -14,7 +20,7 @@ function App() {
       overwriteProfile: state.overwriteProfile,
       clearProfile: state.clearProfile,
     })
-  );
+  );  
   return (
     <>
       {profile ? <Home /> : <LogIn />}

@@ -49,7 +49,8 @@ const Channels = () => {
     LoadChannels();
   }
   return (
-    <div className="channels flex-row">    
+    <div className="channels flex-row"> 
+    <div>
       <AccordionMenu>   
         <AccordionItem id="menu" title="Channels">        
           <ul>
@@ -60,6 +61,7 @@ const Channels = () => {
         </AccordionItem>
       </AccordionMenu>
       <button className = "add-chan" onClick={toggleModal}>Add Channel</button>
+      </div>   
       {isShown && (<PopUpModal className={isShown}>
         <ChannelForm closeBtn = {closeModal} reloadChannel={reloadChannel}/>
       </PopUpModal>)}

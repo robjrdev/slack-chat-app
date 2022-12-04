@@ -4,6 +4,8 @@ import userProfileStore from "../../store/userProfile";
 import TextInput from "../../components/input/textBox";
 import { _ } from 'lodash'
 import { RoundedButton } from "../../components/Button";
+import { HeliLoad } from "../../components/Loading";
+import HexagonLoading from "../../components/Loading/hexagonLoading";
 
 const SignInForm = ({getProfile}) => {  
   const registryEmail = useRef();
@@ -40,7 +42,7 @@ const SignInForm = ({getProfile}) => {
   };
   return (
     <div className="flex-column login-form" style={{height: '12rem'}}>     
-      <div>Log In</div> 
+      <div className="login-header">Log In</div> 
       <TextInput ref={registryEmail} name="signmail" placeholderText="Enter Email Address" email/>
       <TextInput ref={registryPassword} name="signpw" placeholderText="Password" password/>
       <RoundedButton buttonClick={handleLogin}/>
@@ -79,7 +81,7 @@ const SignUpForm = () => {
 
   return (
     <div className="flex-column login-form" style={{height:'15rem'}}>
-      <div>Create Account</div>
+      <div className="login-header">Create Account</div>
       <TextInput ref={registryEmail} name="registermail" placeholderText="Enter Email Address" email/>
       <TextInput ref={registryPassword} name="registerpw" placeholderText="Password" password/>
       <TextInput ref={registryPasswordConfirm} name="registerpwconfirm" placeholderText="Confirm Password" password/>
@@ -96,10 +98,16 @@ const LogIn = ({getProfile}) => {
   };
   
   return (
-    <div className="flex-column" style={{alignItems: "center", justifyContent: "center", height: "100vh"}}>
-      {!signUp ? <SignInForm getProfile={getProfile}/> : <SignUpForm />}
-      <div style={{cursor: "pointer"}} onClick={handleClick}>
-        {!signUp ? "New User" : "Back to Login"}
+    <div className="flex-row login" >
+      <div className="flex-column login-container" >
+        {!signUp ? <SignInForm getProfile={getProfile}/> : <SignUpForm />}
+        <div style={{cursor: "pointer", marginTop: "5rem"}} onClick={handleClick}>
+          {!signUp ? "New User" : "Back to Login"}
+        </div>
+      </div>
+      <div className="flex-column login-logo">
+        <HexagonLoading />
+        {/* <HeliLoad /> */}
       </div>
     </div>
   );
@@ -107,9 +115,3 @@ const LogIn = ({getProfile}) => {
 
 export default LogIn;
 
-
-// const LogIn = () => {
-//   return <div>LogIn</div>;
-// };
-
-// export default LogIn;

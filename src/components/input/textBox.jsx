@@ -40,7 +40,7 @@ const TextInput = forwardRef(({
       setIsValid({
         show: isValidPassword(Input),
         message:
-          "Must contain at least 1 lower and uppercase character, 1 numeric character, 1 special character, and at least 8 characters",
+          "Minimum 8 characters , has an upper or lower case, 1 number, and a special character",
       });
 
     !email && !number && !password && setIsValid({ show: true, message: null });
