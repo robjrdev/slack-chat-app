@@ -6,6 +6,8 @@ import useReceiverStore from '../../store/receiverProfile';
 import userProfileStore from '../../store/userProfile';
 import { _ } from 'lodash'
 import Conversation from '../Conversation';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
 
 export const NewMessage = () => {
   const [message, setMessage] = useState('');
@@ -37,6 +39,8 @@ export const NewMessage = () => {
     })   
     setMessage('');
   };
+
+  const queryConversation = new QueryClient();
   return (
     <div className="new-message flex-column">
     <div className="recipient flex-row">
@@ -45,7 +49,9 @@ export const NewMessage = () => {
     </div>
       <div className="conversation flex-column" style={{width:'100%'}}>
         {/* <Conversation receiver_id={!receiver ? '' : receiver.receiver_id}/> */}
-        <Conversation receiver_id={receiver && receiver.receiver_id}/>
+        <QueryClientProvider client={queryConversation}>
+          <Conversation receiver_id={receiver && receiver.receiver_id}/>
+        </QueryClientProvider>
       </div>
       <form className="message-form flex-row" onSubmit={sendMessage}>
         <div className="message-field input-container">

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 
 const AccordionMenu = props => {
   const [children, setChildren] = useState([]);
-  const [openItem, setOpenItem] = useState();
+  const [openItem, setOpenItem] = useState(false);
 
   useEffect(() => {
     setChildren(() =>
@@ -10,14 +10,13 @@ const AccordionMenu = props => {
     );
   }, [props.children]);
 
-  const clickHandler = useCallback(id => {
-    setOpenItem(prev => {
-      if (id === prev) {
-        return '';
-      } else {
-        return id;
-      }
+  const clickHandler = useCallback(id => {  
+    setOpenItem(prev => {if (id === prev) {return ''; } else { return id; }
+    
     });
+
+    // setOpenItem(!openItem);
+    
   }, []);
 
   return (

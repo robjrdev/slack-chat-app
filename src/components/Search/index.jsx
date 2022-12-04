@@ -30,7 +30,7 @@ const Search = forwardRef(({}, ref) => {
   useEffect(() => {
     LoadUsers();
   }, []);
-
+  
   const LoadUsers = async () => {
     await setAllUsers([]);
     const arrVal = await getAllUsers(profile);
@@ -45,6 +45,7 @@ const Search = forwardRef(({}, ref) => {
   }, [userInput]);
 
   const onChangeInput = e => {
+    // window.store.mainSearch = e.target.value
     setUserInput(e.target.value);
   };
 
@@ -60,6 +61,8 @@ const Search = forwardRef(({}, ref) => {
    overwriteReceiver(receiverInfo);
    addContact(contactInfo);
    setUserInput('')
+   location.reload();
+  //  setInterval( setUserInput(''),2000)
   };
   return (
     <div className="search-input-container">

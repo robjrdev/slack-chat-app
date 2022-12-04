@@ -90,7 +90,7 @@ export const getDirectMessages = async (
       // { receiver_id: credentials.receiver_id,
       //   receiver_class: credentials.receiver_class}, 
     );
-
+      
     return data.data;
   } catch {
     // alert("Something went wrong. Please check the server API and try again");
