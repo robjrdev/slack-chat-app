@@ -2,6 +2,7 @@ import React from 'react';
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { TfiClose } from "react-icons/tfi";
 import { BsSearch } from "react-icons/bs";
+import { BiSearchAlt } from "react-icons/bi";
 
 
 export const PasswordIcons = ({displayPassword, onClickDisplayPassword}) => {
@@ -20,8 +21,8 @@ export const PasswordIcons = ({displayPassword, onClickDisplayPassword}) => {
 
 export const SearchIcons = () => {
   return (
-  <div className='icon-container'>
-    <BsSearch color="#ccc"/>
+  <div className='search-icon'>
+    <BiSearchAlt color="#ccc" fontSize={'1.5rem'} />
   </div>
   )  
 }

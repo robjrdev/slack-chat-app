@@ -65,7 +65,7 @@ const Search = forwardRef(({}, ref) => {
     <div className="search-input-container">
       <div className="input-container">
         <input
-          className="input-container__textbox"
+          className="search-bar-textbox"
           placeholder=" "
           value={userInput}
           onChange={onChangeInput}
@@ -74,7 +74,7 @@ const Search = forwardRef(({}, ref) => {
           autoCorrect="off"
         ></input>
         <InputPlacholder display="Search Email..." />
-        {userInput.trim() === '' && <SearchIcons/>}
+        {userInput.trim() === '' && <SearchIcons />}
         {userInput.trim() !== '' && (
           <div
             className="placeholder-icons-container"

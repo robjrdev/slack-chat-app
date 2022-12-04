@@ -48,8 +48,14 @@ const Channels = () => {
   const reloadChannel = () =>{
     LoadChannels();
   }
+
+  const clickBlur = () =>{
+    setIsShown(false);
+  }
+
   return (
     <div className="channels flex-row">    
+      <div className="channels flex-row">
       <AccordionMenu>   
         <AccordionItem id="menu" title="Channels">        
           <ul>
@@ -60,9 +66,10 @@ const Channels = () => {
         </AccordionItem>
       </AccordionMenu>
       <button className = "add-chan" onClick={toggleModal}>Add Channel</button>
-      {isShown && (<PopUpModal className={isShown}>
+      </div>
+      {isShown && (<PopUpModal className={isShown} clickBlur={clickBlur}>
         <ChannelForm closeBtn = {closeModal} reloadChannel={reloadChannel}/>
-      </PopUpModal>)}
+      </PopUpModal >)}
     </div>
   );
 };

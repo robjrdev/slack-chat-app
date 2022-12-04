@@ -4,7 +4,7 @@ export const Modal = ({ children }) => {
   return <div className="modal-container">{children}</div>;
 };
 
-export const PopUpModal = ({children, className}) => {
+export const PopUpModal = ({children, className, clickBlur}) => {
   const blurEffect = {
     position: "absolute",
     height: "100vh",
@@ -19,7 +19,7 @@ export const PopUpModal = ({children, className}) => {
   }
   return(
   <>
-    <div style={blurEffect}></div>
+    <div style={blurEffect} onClick={clickBlur}></div>
     <div className='pop-up-container'> 
       {children}
     </div>
