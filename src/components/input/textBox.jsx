@@ -5,6 +5,7 @@ import { PasswordIcons } from './inputIcons';
 
 
 const TextInput = forwardRef(({
+  triggerValidation,
   name = "",
   email = false,
   password = false,
@@ -14,7 +15,7 @@ const TextInput = forwardRef(({
   deactivate = false,
   placeholderText = "Enter Data Here",
   min = 0,
-  max = 9999,
+  max = 9999,  
 }, ref) => {
 
   const [userInput, setUserInput] = useState("");
@@ -52,6 +53,8 @@ const TextInput = forwardRef(({
         ? setUserInput(Input)
         : setUserInput((prevInput) => prevInput);
     }
+
+    triggerValidation()
   };
 
   const eyeClick = (e) => {
