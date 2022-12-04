@@ -5,6 +5,7 @@ import { PasswordIcons } from './inputIcons';
 
 
 const TextInput = forwardRef(({
+  triggerValidation,
   name = "",
   email = false,
   password = false,
@@ -14,7 +15,7 @@ const TextInput = forwardRef(({
   deactivate = false,
   placeholderText = "Enter Data Here",
   min = 0,
-  max = 9999,
+  max = 9999,  
 }, ref) => {
 
   const [userInput, setUserInput] = useState("");
@@ -40,7 +41,7 @@ const TextInput = forwardRef(({
       setIsValid({
         show: isValidPassword(Input),
         message:
-          "Must contain at least 1 lower and uppercase character, 1 numeric character, 1 special character, and at least 8 characters",
+          "Minimum 8 characters , has an upper or lower case, 1 number, and a special character",
       });
 
     !email && !number && !password && setIsValid({ show: true, message: null });
@@ -52,6 +53,8 @@ const TextInput = forwardRef(({
         ? setUserInput(Input)
         : setUserInput((prevInput) => prevInput);
     }
+
+    triggerValidation()
   };
 
   const eyeClick = (e) => {

@@ -12,7 +12,7 @@ export const PasswordIcons = ({displayPassword, onClickDisplayPassword}) => {
         {!displayPassword ? (
           <AiFillEyeInvisible color="808080" />
         ) : (
-          <AiFillEye color="dc143c" />
+          <AiFillEye color="2980b9" />
         )}
       </button>
     </div>
