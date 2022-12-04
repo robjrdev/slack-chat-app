@@ -1,23 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import AccordionMenu from '../../../components/AccordionMenu';
-import { AccordionItem } from '../../../components/AccordionMenu/AccordionItem';
-import ChannelItem from './ChannelItem';
-import { Link } from 'react-router-dom';
-import InputPlacholder from '../../../components/input/inputPlacholder';
-import ChannelForm from './ChannelForm';
-import { PopUpModal } from '../../../components/Modal';
-import { getAllChannels } from '../../../api/api';
-import userProfileStore from '../../../store/userProfile'
-
+import React, { useState, useEffect } from "react";
+import AccordionMenu from "../../../components/AccordionMenu";
+import { AccordionItem } from "../../../components/AccordionMenu/AccordionItem";
+import ChannelItem from "./ChannelItem";
+import { Link } from "react-router-dom";
+import InputPlacholder from "../../../components/input/inputPlacholder";
+import ChannelForm from "./ChannelForm";
+import { PopUpModal } from "../../../components/Modal";
+import { getAllChannels } from "../../../api/api";
+import userProfileStore from "../../../store/userProfile";
 
 const Channels = () => {
-  const [ isShown, setIsShown] = useState(false);
-  const [ reload, setReload] = useState(false);
+  const [isShown, setIsShown] = useState(false);
+  const [reload, setReload] = useState(false);
   const [channelList, setChannelList] = useState([]);
 
-
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
-    state => ({
+    (state) => ({
       profile: state.profile,
       overwriteProfile: state.overwriteProfile,
       clearProfile: state.clearProfile,
@@ -35,51 +33,45 @@ const Channels = () => {
   };
 
   const showModal = () => {
-    setIsShown(true)
-  }
+    setIsShown(true);
+  };
   const closeModal = () => {
-    setIsShown(false)
-  }
+    setIsShown(false);
+  };
 
   const toggleModal = () => {
-    setIsShown(!isShown)
-  }
+    setIsShown(!isShown);
+  };
 
-  const reloadChannel = () =>{
+  const reloadChannel = () => {
     LoadChannels();
-  }
+  };
 
-  const clickBlur = () =>{
+  const clickBlur = () => {
     setIsShown(false);
-  }
+  };
 
   return (
-
-   
-      <div className="channels flex-row">
-
-    <div className="channels flex-row"> 
-    <div>
-
-      <AccordionMenu>   
-        <AccordionItem id="menu" title="Channels">        
-          <ul>
-            <li>
-              <ChannelItem channelArr={channelList}/>
-            </li>
-          </ul>
-        </AccordionItem>
-      </AccordionMenu>
-      <button className = "add-chan" onClick={toggleModal}>Add Channel</button>
-
+    <div className="channels flex-row">
+      <div className="flex-row">
+        <AccordionMenu>
+          <AccordionItem id="menu" title="Channels">
+            <ul>
+              <li>
+                <ChannelItem channelArr={channelList} />
+              </li>
+            </ul>
+          </AccordionItem>
+        </AccordionMenu>
+        <button className="add-chan" onClick={toggleModal}>
+          Add Channel
+        </button>
       </div>
-      {isShown && (<PopUpModal className={isShown} clickBlur={clickBlur}>
-
-      </div>   
-      {isShown && (<PopUpModal className={isShown}>
-
-        <ChannelForm closeBtn = {closeModal} reloadChannel={reloadChannel}/>
-      </PopUpModal >)}
+      {isShown && (
+        <PopUpModal className={isShown} clickBlur={clickBlur}>
+          <ChannelForm closeBtn={closeModal} reloadChannel={reloadChannel} />
+        </PopUpModal>
+      )}
     </div>
   );
 };
