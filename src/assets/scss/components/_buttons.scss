@@ -26,7 +26,8 @@
   }
 }
 
-// .add-chan {
+.add-chan {
+    max-height: 2rem;
 //   box-sizing: border-box;
 //   appearance: none;
 //   background-color: transparent;
@@ -51,7 +52,7 @@
 //   &:focus {
 //     color: #fff;
 //     outline: 0;
-// }
+}
 
 .rounded-container {
   .btn-rounded {
