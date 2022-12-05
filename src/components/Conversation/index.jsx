@@ -24,9 +24,11 @@ const Conversation = ({ receiver_id }) => {
   const myInterval = useRef();
 
   const [conversationList, setConversationList] = useState([]);
+  const [autoScroll, setAutoScroll] = useState(true)
 
   useEffect(() => {
     LoadData();
+    // const lastRecord = useRef();
   }, [receiver_id]);
 
   const intervalTrigger = () => {
@@ -47,6 +49,7 @@ const Conversation = ({ receiver_id }) => {
     const arrValues = await [...new Map(arrVal.map(item => [item['id'], item])).values()]
     await setConversationList(arrValues);
     window.store.direcMessage = arrValues;
+    lastRecord.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const RealTimeConversation = async () => {
@@ -56,10 +59,14 @@ const Conversation = ({ receiver_id }) => {
     window.store.direcMessage !== arrValues && setConversationList(arrValues)
   };
 
-const lastRecord = useRef();
-useEffect(() => {
-  lastRecord.current.scrollIntoView({ behavior: "smooth" });
-}, [conversationList]);
+  const lastRecord = useRef();
+
+
+// useEffect(() => {
+//   if (autoScroll) return
+  
+//   setAutoScroll(false)
+// }, [conversationList]);
   return (
     <>
       {conversationList.length > 0 && conversationList.map((obj, idx) => {

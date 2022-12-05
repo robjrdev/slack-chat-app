@@ -40,8 +40,8 @@ const SidePanel = () => {
         <Channels />
         <DirectMessages />
       </ul>
-      <div className="log-out" onClick={handleLogOut}>
-        <FiLogOut />
+      <div className="log-out" onClick={handleLogOut} style={{paddingLeft: '0.5rem'}} >
+        <FiLogOut fontSize="1.5rem" />
       </div>
     </div>
   );
