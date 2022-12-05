@@ -1,5 +1,6 @@
 .accordion-menu {
   color: #ccc;
+  width: 100%;
 }
 
 .accordion-item {
@@ -9,6 +10,7 @@
 
 .accordion-item--header {
   color: #ccc;
+  padding: 0 1rem;
 }
 
 .accordion-item--body {

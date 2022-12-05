@@ -39,13 +39,14 @@ const DirectMessagesItem = ({ contacts }) => {
 
   return(
     <>
+      <ul>
+        <li>
       {myContacts.length > 0 &&
         myContacts.map((obj, idx) => {
           return (
             <div
-              key={idx}
-              className="contact-email"
-              style={{ fontSize: ".8rem" }}
+              key={idx}             
+              className="contact-email side-panel-items"
               data-usercode={obj.id}
               onClick={() => {
                 thisisCode({ uid: obj.contact_uid, id: obj.contact_id });
@@ -56,7 +57,8 @@ const DirectMessagesItem = ({ contacts }) => {
           );
         })}
       {myContacts.length === 0 && <div>No Contacts Available</div>}
-     
+      </li>
+      </ul>
     </>
     // <>
     // {contacts.map((obj, idx) => {
