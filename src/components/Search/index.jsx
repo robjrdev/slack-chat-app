@@ -37,8 +37,9 @@ const Search = forwardRef(({ }, ref) => {
     await setAllUsers([]);
     const arrVal = await getAllUsers(profile);
     await setAllUsers(arrVal);
-    await generateUsers(arrVal)
+
   };
+  generateUsers(allUsers)
 
   useEffect(() => {
     userInput.trim() === '' || userInput.trim() === 'undefined'
