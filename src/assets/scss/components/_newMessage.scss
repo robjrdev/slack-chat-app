@@ -3,16 +3,36 @@
   justify-content: space-between;
   padding: 1rem 0;
 
-  .recipient {
-    margin: 0;
+  .header{
+    height: 2rem;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0 1rem;
+    .recipient {
+      margin: 0;
+      height: 100%;
+      width: 100%;
+      h3 {
+        margin: 0;
+      }
+      }
+    .recipient-name {
+      margin: 0;
+     }
+    button {
+      width: 2rem;
+      height: 2rem;
+      font-size: 1rem;
+     }
+
   }
-  .recipient-name {
-    border-bottom: 1px solid white;
-  }
+  
 
   .conversation {
     font-size: 1.2rem;
     height: 100%;
+    width: 100%;;
     border: 1px solid white;
     border-radius: 1rem;
     padding: 1rem;
