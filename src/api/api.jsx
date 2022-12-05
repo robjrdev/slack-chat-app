@@ -26,9 +26,6 @@ export const loginAccount = async (credentials = null) => {
       email: credentials.email,
       password: credentials.password,
     })
-
-    console.log(response)
-    alert("Login Success")
     return { ...response.headers, id: response.data.data.id }
   } catch {
     alert("Something went wrong. Please check the server API and try again");
@@ -95,7 +92,6 @@ export const sendDirectMessage = async (credentials = null) => {
     body: credentials.body,
   }, { headers: credentials.header }).then((res) => {
     console.log(res);
-    alert("Message Sent");
   })
     .catch((ex) => {
       alert("Something went wrong. Please check the server API and try again");

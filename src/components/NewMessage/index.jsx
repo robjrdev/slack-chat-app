@@ -29,12 +29,12 @@ export const NewMessage = () => {
       receiver: state.receiver,
       overwriteReceiver: state.overwriteReceiver,
       clearReceiver: state.clearReceiver,
-  })) 
+    }))
 
-  const onEmojiClick = (e) =>{
+  const onEmojiClick = (e) => {
     setMessage(prevInput => prevInput + e.emoji);
   }
-//  }))
+  //  }))
 
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
     (state) => ({
@@ -97,13 +97,13 @@ export const NewMessage = () => {
       <div className="conversation flex-column">
         <Conversation receiver_id={receiver && receiver.receiver_id} />
       </div>
-      
-      {showPicker && 
-      <div className='emoji-container' style={{position:'absolute', right:'0', top:'30%', overflowY: 'scroll' , maxHeight: '20rem', fontSize:'2rem'}}> 
-         <Picker pickerStyle={{ fontSize: '0.4rem' }} onEmojiClick={onEmojiClick} /> </div>
-        }
+
+      {showPicker &&
+        <div className='emoji-container' style={{ position: 'absolute', right: '5%', top: '51%', overflowY: 'scroll', maxHeight: '20rem', fontSize: '2rem', borderRadius: '2rem' }}>
+          <Picker pickerStyle={{ fontSize: '0.4rem' }} onEmojiClick={onEmojiClick} /> </div>
+      }
       <form className="message-form flex-row" onSubmit={sendMessage}>
-        <div className="message-field input-container" style={{position:'relative'}}>
+        <div className="message-field input-container" style={{ position: 'relative' }}>
           <input
             className="input-container__textbox"
             value={message}
@@ -113,10 +113,10 @@ export const NewMessage = () => {
             autoCorrect="off"
           >
           </input>
-          
-          <div style={{position: 'absolute', right: '0', display: 'flex', height: '100%', alignItems: 'center'}}>
+
+          <div style={{ position: 'absolute', right: '0', display: 'flex', height: '100%', alignItems: 'center' }}>
             <MdInsertEmoticon onClick={() => setShowPicker(val => !val)} />
-          </div>          
+          </div>
         </div>
         <div className="send-message-btn">
           <button type="submit">
@@ -125,7 +125,7 @@ export const NewMessage = () => {
         </div>
 
       </form>
-      
+
     </div>
 
     // </div >
