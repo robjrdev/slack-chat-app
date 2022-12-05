@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import React, {useState, useEffect, useRef} from 'react';
 import useReceiverStore from '../../../store/receiverProfile';
 
 const DirectMessagesItem = ({ contacts }) => {
@@ -37,27 +36,27 @@ const DirectMessagesItem = ({ contacts }) => {
     //  setInterval( setUserInput(''),2000)
   };
 
-  return(
+  return (
     <>
       <ul>
         <li>
-      {myContacts.length > 0 &&
-        myContacts.map((obj, idx) => {
-          return (
-            <div
-              key={idx}             
-              className="contact-email side-panel-items"
-              data-usercode={obj.id}
-              onClick={() => {
-                thisisCode({ uid: obj.contact_uid, id: obj.contact_id });
-              }}
-            >
-              {obj.contact_uid}
-            </div>
-          );
-        })}
-      {myContacts.length === 0 && <div>No Contacts Available</div>}
-      </li>
+          {myContacts.length > 0 &&
+            myContacts.map((obj, idx) => {
+              return (
+                <div
+                  key={idx}
+                  className="contact-email side-panel-items"
+                  data-usercode={obj.id}
+                  onClick={() => {
+                    thisisCode({ uid: obj.contact_uid, id: obj.contact_id });
+                  }}
+                >
+                  {obj.contact_uid}
+                </div>
+              );
+            })}
+          {myContacts.length === 0 && <div>No Contacts Available</div>}
+        </li>
       </ul>
     </>
     // <>
