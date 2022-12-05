@@ -7,7 +7,7 @@ import { ClearTextIcon, SearchIcons } from '../input/inputIcons';
 import { addUserToChannel, getAllUsers } from '../../api/api';
 import userProfileStore from '../../store/userProfile';
 import useReceiverStore from '../../store/receiverProfile';
-import allUsersStore from '../../store/allUsers';
+import useAllUsersStore from '../../store/allUsers';
 import { _ } from 'lodash'
 
 
