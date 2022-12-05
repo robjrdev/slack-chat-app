@@ -8,6 +8,7 @@ import ChannelForm from "./ChannelForm";
 import { PopUpModal } from "../../../components/Modal";
 import { getAllChannels } from "../../../api/api";
 import userProfileStore from "../../../store/userProfile";
+import { IoIosAddCircle } from "react-icons/io";
 
 const Channels = () => {
   const [isShown, setIsShown] = useState(false);
@@ -64,7 +65,7 @@ const Channels = () => {
           </AccordionItem>
         </AccordionMenu>
         <button className="add-chan" onClick={toggleModal}>
-          Add Channel
+          {/* Add Channel */}<IoIosAddCircle fontSize="1.5rem" cursor="pointer" color="ccc"/>
         </button>
       </div>
       {isShown && (

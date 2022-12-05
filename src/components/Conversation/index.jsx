@@ -55,6 +55,11 @@ const Conversation = ({ receiver_id }) => {
     const arrValues = await [...new Map(arrVal.map(item => [item['id'], item])).values()]
     window.store.direcMessage !== arrValues && setConversationList(arrValues)
   };
+
+const lastRecord = useRef();
+useEffect(() => {
+  lastRecord.current.scrollIntoView({ behavior: "smooth" });
+}, [conversationList]);
   return (
     <>
       {conversationList.length > 0 && conversationList.map((obj, idx) => {
@@ -64,6 +69,7 @@ const Conversation = ({ receiver_id }) => {
         </div>
       }
       )}
+       <div ref={lastRecord} />
       {/* {conversationList.length === 0 && <HeliLoad />} */}
     </>
   )

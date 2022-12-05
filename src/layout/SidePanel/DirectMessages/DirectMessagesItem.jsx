@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import useReceiverStore from '../../../store/receiverProfile';
 
 const DirectMessagesItem = ({ contacts }) => {
@@ -23,6 +24,7 @@ const DirectMessagesItem = ({ contacts }) => {
   const thisisCode = ({ uid, id }) => {
     const receiverInfo = {
       receiver_id: id,
+
       name: uid,
       class: 'User'
     };
@@ -35,10 +37,7 @@ const DirectMessagesItem = ({ contacts }) => {
     //  setInterval( setUserInput(''),2000)
   };
 
-  // if(contacts.length === 0) {
-  //   return <div>No Contacts Available</div>
-  // }
-  return (
+  return(
     <>
       {myContacts.length > 0 &&
         myContacts.map((obj, idx) => {
@@ -57,6 +56,7 @@ const DirectMessagesItem = ({ contacts }) => {
           );
         })}
       {myContacts.length === 0 && <div>No Contacts Available</div>}
+     
     </>
     // <>
     // {contacts.map((obj, idx) => {
