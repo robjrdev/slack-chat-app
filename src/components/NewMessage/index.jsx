@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { BiSend } from 'react-icons/bi';
-import { sendDirectMessage } from '../../api/api';
+import { sendDirectMessage, getChannelMembers } from '../../api/api';
 import InputPlacholder from '../input/inputPlacholder';
 import useReceiverStore from '../../store/receiverProfile';
 import userProfileStore from '../../store/userProfile';
@@ -9,12 +9,21 @@ import Conversation from '../Conversation';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import Picker from 'emoji-picker-react';
 import { MdInsertEmoticon } from 'react-icons/md';
+import { RoundedButton } from '../Button';
+import { PopUpModal } from '../Modal';
+import AddMember from '../AddMember';
+import useAllUsersStore from '../../store/allUsers';
+
+
 
 export const NewMessage = () => {
+  const allAvailableUsers = useAllUsersStore(state => state.allAvailableUser)
+  const [isShown, setIsShown] = useState(false);
   const [message, setMessage] = useState('');
   const [displayMessage, setDisplayMessage] = useState([]);
   const [inputStr, setInputStr] = useState('');
   const [showPicker, setShowPicker] = useState(false);
+  const [memberList, setMemberList] = useState([])
   const { receiver, overwriteReceiver, clearReceiver } = useReceiverStore(
     state => ({
       receiver: state.receiver,
@@ -25,6 +34,7 @@ export const NewMessage = () => {
   const onEmojiClick = (e) =>{
     setMessage(prevInput => prevInput + e.emoji);
   }
+ }))
 
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
     (state) => ({
@@ -43,11 +53,17 @@ export const NewMessage = () => {
 
   const sendMessage = e => {
     e.preventDefault();
-    sendDirectMessage({receiver_id: receiver.receiver_id, receiver_class: 'User', body: message, header: profile}).then((credentials) => {
-      (!_.isEmpty(credentials)) &&  overwriteReceiver({ ...credentials });     
-    })   
+    sendDirectMessage({ receiver_id: receiver.receiver_id, receiver_class: receiver.class, body: message, header: profile }).then((credentials) => {
+      (!_.isEmpty(credentials)) && overwriteReceiver({ ...credentials });
+    })
     setMessage('');
   };
+  const loadMemberList = async () => {
+    await setMemberList([]);
+    const arrVal = await getChannelMembers({ header: profile, id: receiver.receiver_id });
+    await setMemberList(arrVal);
+  }
+
 
 
   const toggleEmoji = () => {
@@ -55,17 +71,31 @@ export const NewMessage = () => {
   }
 
   const queryConversation = new QueryClient();
+
+  const filteredMembers = allAvailableUsers[0].filter((user) => memberList.some(item => item.user_id === user.id));
+  const toggleModal = () => {
+    loadMemberList()
+    setIsShown(!isShown);
+  };
+  const closeModal = () => {
+    setIsShown(false);
+  };
+  const clickBlur = () => {
+    setIsShown(false);
+  };
   return (
     <div className="new-message flex-column">
-    <div className="recipient flex-row">
-      <h3>Recipient :</h3>
-     <p className='recipient-name flex-row'style={{marginLeft:'.5rem'}}>{!receiver ? '' : receiver.receiver_uid} </p>
-    </div>
-      <div className="conversation flex-column" style={{width:'100%'}}>
-        {/* <Conversation receiver_id={!receiver ? '' : receiver.receiver_id}/> */}
-        <QueryClientProvider client={queryConversation}>
-          <Conversation receiver_id={receiver && receiver.receiver_id}/>
-        </QueryClientProvider>
+      <div className="header flex-row">
+        <div className="recipient flex-row">
+          <h3>{receiver === null ? '' : receiver.class === 'Channel' ? 'Channel Name :' : 'Recipient :'}</h3>
+          <p className='recipient-name flex-row' style={{ marginLeft: '.5rem' }}>{!receiver ? '' : receiver.name} </p>
+        </div>
+        {isShown && <PopUpModal clickBlur={clickBlur}><AddMember memberList={filteredMembers} closeBtn={closeModal} /></PopUpModal>}
+
+        <RoundedButton displayText='+' buttonClick={toggleModal} />
+      </div>
+      <div className="conversation flex-column">
+        <Conversation receiver_id={receiver && receiver.receiver_id} />
       </div>
       
       {showPicker && 
@@ -92,12 +122,15 @@ export const NewMessage = () => {
         </div>
         <div className="send-message-btn">
           <button type="submit">
-            <BiSend size='2rem'/>
+            <BiSend size='2rem' />
           </button>
         </div>
 
       </form>
       
     </div>
+
+    </div >
+
   );
 };

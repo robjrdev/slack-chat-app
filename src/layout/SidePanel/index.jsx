@@ -28,20 +28,20 @@ const SidePanel = () => {
   return (
     <div className="side-panel flex-column">
       <ul>
-        <li className="flex-row" style={{ justifyContent: 'space-between' }}>
-          <Link to="/server">Server</Link>
+        <li className="flex-row" style={{ justifyContent: 'flex-end', paddingRight: '0.5rem'  }}>
+          {/* <Link to="/server">Server</Link> */}
           <Link to="/newMessage">
-            <AiFillMessage />
+            <AiFillMessage fontSize="1.5rem"/>
           </Link>
         </li>
-        <div>
+        {/* <div>
           <SideMenu />
-        </div>
+        </div> */}
         <Channels />
         <DirectMessages />
       </ul>
-      <div className="log-out" onClick={handleLogOut}>
-        <FiLogOut />
+      <div className="log-out" onClick={handleLogOut} style={{paddingLeft: '0.5rem'}} >
+        <FiLogOut fontSize="1.5rem" />
       </div>
     </div>
   );

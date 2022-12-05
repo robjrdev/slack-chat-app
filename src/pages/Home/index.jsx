@@ -28,13 +28,14 @@ const Home = () => {
           <Modal>
             <Routes>
               <Route path="/newMessage" element={<NewMessage />} />
-              <Route path="/threads" element={<Threads />} />
+              <Route path="/" element={<NewMessage />} />
+              {/* <Route path="/threads" element={<Threads />} />
               <Route path="/server" element={<Server />} />
               <Route path="/sideDirectMessage" element={<SideDirectMessages />}/>
               <Route path="/mentionsreactions" element={<MentionsReactions />}/>
               <Route path="/draftsSent" element={<DraftsSent />} />
               <Route path="/channelItem" element={<ChannelItem />} />
-              <Route path="/directMessage/:id" element={<DirectMessagesItem />}/>
+              <Route path="/directMessage/:id" element={<DirectMessagesItem />}/> */}
             </Routes>
           </Modal>
         </div>
