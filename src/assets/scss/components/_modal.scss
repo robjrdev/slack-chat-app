@@ -20,5 +20,9 @@
   bottom: 0;
   margin: auto;
   background-color: var(--background-color);
+  padding: 0.5rem;
+  overflow-y: scroll;
+  font-size: 1.3rem;
+  &::-webkit-scrollbar { width: 0 !important }
   
 }

@@ -22,6 +22,7 @@ const Conversation = ({ receiver_id }) => {
 
 
   const myInterval = useRef();
+  const lastRecord = useRef();
 
   const [conversationList, setConversationList] = useState([]);
   const [autoScroll, setAutoScroll] = useState(true)
@@ -50,6 +51,7 @@ const Conversation = ({ receiver_id }) => {
     await setConversationList(arrValues);
     window.store.direcMessage = arrValues;
     lastRecord.current.scrollIntoView({ behavior: "smooth" });
+   
   };
 
   const RealTimeConversation = async () => {
@@ -57,9 +59,10 @@ const Conversation = ({ receiver_id }) => {
     const arrVal = await getDirectMessages({ header: profile }, receiver_id, receiver.class);
     const arrValues = await [...new Map(arrVal.map(item => [item['id'], item])).values()]
     window.store.direcMessage !== arrValues && setConversationList(arrValues)
+    
   };
 
-  const lastRecord = useRef();
+ 
 
 
 // useEffect(() => {
@@ -76,7 +79,7 @@ const Conversation = ({ receiver_id }) => {
         </div>
       }
       )}
-       <div ref={lastRecord} />
+       <div ref={lastRecord}/>
       {/* {conversationList.length === 0 && <HeliLoad />} */}
     </>
   )

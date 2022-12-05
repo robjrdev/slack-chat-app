@@ -34,7 +34,7 @@ export const NewMessage = () => {
   const onEmojiClick = (e) =>{
     setMessage(prevInput => prevInput + e.emoji);
   }
- }))
+//  }))
 
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
     (state) => ({
@@ -92,15 +92,15 @@ export const NewMessage = () => {
         </div>
         {isShown && <PopUpModal clickBlur={clickBlur}><AddMember memberList={filteredMembers} closeBtn={closeModal} /></PopUpModal>}
 
-        <RoundedButton displayText='+' buttonClick={toggleModal} />
+        {receiver.class === 'Channel' && <RoundedButton displayText='+' buttonClick={toggleModal} />}
       </div>
       <div className="conversation flex-column">
         <Conversation receiver_id={receiver && receiver.receiver_id} />
       </div>
       
       {showPicker && 
-      <div style={{position:'absolute', right:'0', top:'30%'}}> 
-         <Picker pickerStyle={{ width: '100%', position:'absolute' }} onEmojiClick={onEmojiClick} /> </div>
+      <div className='emoji-container' style={{position:'absolute', right:'0', top:'30%', overflowY: 'scroll' , maxHeight: '20rem', fontSize:'2rem'}}> 
+         <Picker pickerStyle={{ fontSize: '0.4rem' }} onEmojiClick={onEmojiClick} /> </div>
         }
       <form className="message-form flex-row" onSubmit={sendMessage}>
         <div className="message-field input-container" style={{position:'relative'}}>
@@ -108,17 +108,15 @@ export const NewMessage = () => {
             className="input-container__textbox"
             value={message}
             onChange={newMessage}
-            placeholder=" "
+            placeholder="Write Message"
             autoComplete="off"
             autoCorrect="off"
           >
           </input>
           
-          <div style={{postion: 'absolute', right: '-10'}}>
+          <div style={{position: 'absolute', right: '0', display: 'flex', height: '100%', alignItems: 'center'}}>
             <MdInsertEmoticon onClick={() => setShowPicker(val => !val)} />
-          </div>
-          
-          <InputPlacholder display="New Message" />
+          </div>          
         </div>
         <div className="send-message-btn">
           <button type="submit">
@@ -130,7 +128,7 @@ export const NewMessage = () => {
       
     </div>
 
-    </div >
+    // </div >
 
   );
 };

@@ -31,6 +31,9 @@
       //     }
       //  }
     }
+    &::placeholder {
+      color: #ccc;
+    }
 
     &:not(:placeholder-shown) + .input-placeholder {
       font-size: 0;
