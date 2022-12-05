@@ -67,7 +67,7 @@ const AddMember = ({ closeBtn, memberList }) => {
   return (
     <>
       <div className="search-input-container">
-        <div className="input-container">
+        <div className="search-container">
           <input
             className="search-bar-textbox"
             placeholder=" "
