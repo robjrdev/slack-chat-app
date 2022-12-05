@@ -53,8 +53,8 @@ const Channels = () => {
   };
 
   return (
-    <div className="channels flex-row">
-      <div className="flex-row">
+    <div className="channels flex-row" >
+      <div className="flex-row" style={{position: "relative", width: "100%"}}>
         <AccordionMenu>
           <AccordionItem id="menu" title="Channels">
             <ul>

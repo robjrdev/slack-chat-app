@@ -43,8 +43,7 @@ const SignInForm = ({getProfile}) => {
   };
 
   const formValidation = () => {
-    const hasInvalid = document.querySelectorAll('.validation');
-    debugger
+    const hasInvalid = document.querySelectorAll('.validation');    
     if (hasInvalid.length > 0 ) {
       setIsDisabled(true)
     } else {
