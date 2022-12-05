@@ -16,15 +16,11 @@ import { devtools, persist } from "zustand/middleware";
 
 // export default allUsersStore;
 
-const allUsersStore = create((set) => ({
+const useAllUsersStore = create((set) => ({
   allAvailableUser: [],
-  generateUsers: (userAccounts) => {
-    set((state) => ({
-      allAvailableUser: [userAccounts, ...state.allAvailableUser],
-    }))
-  },
+  generateUsers: (userAccounts) => set((state) => ({ allAvailableUser: [userAccounts] })),
   clearUsers: () => set({}, true), // clears the entire store, actions included
 }))
 
-export default allUsersStore;
+export default useAllUsersStore;
 

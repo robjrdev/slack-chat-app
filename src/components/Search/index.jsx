@@ -5,17 +5,13 @@ import { getAllUsers } from '../../api/api';
 import userProfileStore from '../../store/userProfile';
 import useReceiverStore from '../../store/receiverProfile';
 import useContactsStore from '../../store/userContacts';
-import allUsersStore from '../../store/allUsers';
+import useAllUsersStore from '../../store/allUsers';
 
 const Search = forwardRef(({ }, ref) => {
   const [userInput, setUserInput] = useState('');
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
-  const { allAvailableUsers, generateUsers } = allUsersStore((state) => ({
-    allAvailableUsers: state.allAvailableUsers,
-    generateUsers: state.generateUsers,
-    clearUsers: state.clearUsers,
-  }))
+  const generateUsers = useAllUsersStore((state) => state.generateUsers)
   const addContact = useContactsStore((state) => state.addContact)
   const contacts = useContactsStore((state) => state.contacts)
   const { receiver, overwriteReceiver, clearReceiver } = useReceiverStore(
@@ -73,7 +69,7 @@ const Search = forwardRef(({ }, ref) => {
   };
   return (
     <div className="search-input-container">
-      <div className="search-container">
+      <div className="input-container">
         <input
           className="search-bar-textbox"
           placeholder=" "

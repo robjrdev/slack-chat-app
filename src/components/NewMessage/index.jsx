@@ -10,15 +10,11 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { RoundedButton } from '../Button';
 import { PopUpModal } from '../Modal';
 import AddMember from '../AddMember';
-import allUsersStore from '../../store/allUsers';
+import useAllUsersStore from '../../store/allUsers';
 
 
 export const NewMessage = () => {
-  const { allAvailableUsers, generateUsers } = allUsersStore((state) => ({
-    allAvailableUsers: state.allAvailableUsers,
-    generateUsers: state.generateUsers,
-    clearUsers: state.clearUsers,
-  }))
+  const allAvailableUsers = useAllUsersStore(state => state.allAvailableUser)
   const [isShown, setIsShown] = useState(false);
   const [message, setMessage] = useState('');
   const [memberList, setMemberList] = useState([])
