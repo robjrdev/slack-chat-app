@@ -66,7 +66,7 @@ const AddMember = ({ closeBtn, memberList }) => {
   };
   return (
     <>
-      <div className="search-input-container">
+      <div className="search-input-container" style={{margin: '0', width: '100%'}}>
         <div className="search-container">
           <input
             className="search-bar-textbox"
@@ -91,7 +91,7 @@ const AddMember = ({ closeBtn, memberList }) => {
           )}
         </div>
         {showSearchResult && (
-          <div className="searched-item-container">
+          <div className="searched-item-container" style={{width: '100%', minWidth: '0'}}>
             <div>
               {allUsers.length > 0 &&
                 allUsers
