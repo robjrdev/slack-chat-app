@@ -3,7 +3,7 @@ import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { TfiClose } from "react-icons/tfi";
 import { BsSearch } from "react-icons/bs";
 import { BiSearchAlt } from "react-icons/bi";
-
+import { MdInsertEmoticon } from "react-icons/md";
 
 export const PasswordIcons = ({displayPassword, onClickDisplayPassword}) => {
   return (
@@ -17,6 +17,14 @@ export const PasswordIcons = ({displayPassword, onClickDisplayPassword}) => {
       </button>
     </div>
   );
+}
+
+export const IconEmoji = () => {
+  return (
+  <div className='emoji-icon'>
+    <MdInsertEmoticon color="#ccc" fontSize={'1.5rem'} />
+  </div>
+  )  
 }
 
 export const SearchIcons = () => {

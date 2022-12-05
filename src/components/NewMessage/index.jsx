@@ -7,23 +7,35 @@ import userProfileStore from '../../store/userProfile';
 import { _ } from 'lodash'
 import Conversation from '../Conversation';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import Picker from 'emoji-picker-react';
+import { MdInsertEmoticon } from 'react-icons/md';
 import { RoundedButton } from '../Button';
 import { PopUpModal } from '../Modal';
 import AddMember from '../AddMember';
 import useAllUsersStore from '../../store/allUsers';
 
 
+
 export const NewMessage = () => {
   const allAvailableUsers = useAllUsersStore(state => state.allAvailableUser)
   const [isShown, setIsShown] = useState(false);
   const [message, setMessage] = useState('');
+  const [displayMessage, setDisplayMessage] = useState([]);
+  const [inputStr, setInputStr] = useState('');
+  const [showPicker, setShowPicker] = useState(false);
   const [memberList, setMemberList] = useState([])
   const { receiver, overwriteReceiver, clearReceiver } = useReceiverStore(
     state => ({
       receiver: state.receiver,
       overwriteReceiver: state.overwriteReceiver,
       clearReceiver: state.clearReceiver,
-    }))
+  })) 
+
+  const onEmojiClick = (e) =>{
+    setMessage(prevInput => prevInput + e.emoji);
+  }
+ }))
+
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
     (state) => ({
       profile: state.profile,
@@ -52,6 +64,14 @@ export const NewMessage = () => {
     await setMemberList(arrVal);
   }
 
+
+
+  const toggleEmoji = () => {
+    showPicker(false);
+  }
+
+  const queryConversation = new QueryClient();
+
   const filteredMembers = allAvailableUsers[0].filter((user) => memberList.some(item => item.user_id === user.id));
   const toggleModal = () => {
     loadMemberList()
@@ -77,8 +97,13 @@ export const NewMessage = () => {
       <div className="conversation flex-column">
         <Conversation receiver_id={receiver && receiver.receiver_id} />
       </div>
+      
+      {showPicker && 
+      <div style={{position:'absolute', right:'0', top:'30%'}}> 
+         <Picker pickerStyle={{ width: '100%', position:'absolute' }} onEmojiClick={onEmojiClick} /> </div>
+        }
       <form className="message-form flex-row" onSubmit={sendMessage}>
-        <div className="message-field input-container">
+        <div className="message-field input-container" style={{position:'relative'}}>
           <input
             className="input-container__textbox"
             value={message}
@@ -86,7 +111,13 @@ export const NewMessage = () => {
             placeholder=" "
             autoComplete="off"
             autoCorrect="off"
-          ></input>
+          >
+          </input>
+          
+          <div style={{postion: 'absolute', right: '-10'}}>
+            <MdInsertEmoticon onClick={() => setShowPicker(val => !val)} />
+          </div>
+          
           <InputPlacholder display="New Message" />
         </div>
         <div className="send-message-btn">
@@ -96,6 +127,10 @@ export const NewMessage = () => {
         </div>
 
       </form>
+      
+    </div>
+
     </div >
+
   );
 };
