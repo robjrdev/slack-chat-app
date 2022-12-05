@@ -31,14 +31,19 @@ const Search = forwardRef(({ }, ref) => {
 
   useEffect(() => {
     LoadUsers();
+
   }, []);
 
   const LoadUsers = async () => {
     await setAllUsers([]);
     const arrVal = await getAllUsers(profile);
     await setAllUsers(arrVal);
-    await generateUsers(arrVal)
   };
+
+  generateUsers(allUsers)
+
+
+
 
   useEffect(() => {
     userInput.trim() === '' || userInput.trim() === 'undefined'

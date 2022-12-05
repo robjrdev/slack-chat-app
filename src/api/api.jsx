@@ -125,7 +125,7 @@ export const getDirectMessages = async (
   }
 };
 export const getChannelMembers = async (credentials = null) => {
-  console.log(credentials);
+  // console.log(credentials);
   if (!credentials) return
   const { data } = await axios.get(`http://206.189.91.54/api/v1/channels/${credentials.id}`, { headers: credentials.header });
   return data.data.channel_members

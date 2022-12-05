@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BiSend } from 'react-icons/bi';
 import { sendDirectMessage, getChannelMembers } from '../../api/api';
 import InputPlacholder from '../input/inputPlacholder';
@@ -46,13 +46,14 @@ export const NewMessage = () => {
     })
     setMessage('');
   };
+
   const loadMemberList = async () => {
     await setMemberList([]);
     const arrVal = await getChannelMembers({ header: profile, id: receiver.receiver_id });
-    await setMemberList(arrVal);
-    console.log(allAvailableUsers);
-    // debugger
+    await setMemberList(arrVal)
   }
+  const filteredMembers = allAvailableUsers[0].filter((user) => memberList.some(item => item.user_id === user.id));
+  console.log(filteredMembers);
 
   const toggleModal = () => {
     loadMemberList()
@@ -71,7 +72,7 @@ export const NewMessage = () => {
           <h3>{receiver === null ? '' : receiver.class === 'Channel' ? 'Channel Name :' : 'Recipient :'}</h3>
           <p className='recipient-name flex-row' style={{ marginLeft: '.5rem' }}>{!receiver ? '' : receiver.name} </p>
         </div>
-        {isShown && <PopUpModal clickBlur={clickBlur}><AddMember memberList={memberList} closeBtn={closeModal} /></PopUpModal>}
+        {isShown && <PopUpModal clickBlur={clickBlur}><AddMember memberList={filteredMembers} closeBtn={closeModal} /></PopUpModal>}
 
         <RoundedButton displayText='+' buttonClick={toggleModal} />
       </div>

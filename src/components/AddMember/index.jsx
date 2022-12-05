@@ -11,9 +11,9 @@ import useAllUsersStore from '../../store/allUsers';
 import { _ } from 'lodash'
 
 
-const AddMember = ({ closeBtn, memberList }) => {
-  console.log(memberList);
+const AddMember = ({ closeBtn, memberList = [] }) => {
   //Search Start
+  // debugger
   const [channelMembers, setChannelMembers] = useState([])
 
   const [userInput, setUserInput] = useState('');
@@ -34,11 +34,12 @@ const AddMember = ({ closeBtn, memberList }) => {
     })
   );
 
-
-
   useEffect(() => {
     LoadUsers();
   }, []);
+  // useEffect(() => {
+  //   setChannelMembers(memberList)
+  // })
 
   const LoadUsers = async () => {
     await setAllUsers([]);
@@ -46,6 +47,7 @@ const AddMember = ({ closeBtn, memberList }) => {
     await setAllUsers(arrVal);
 
   };
+
 
   useEffect(() => {
     userInput.trim() === '' || userInput.trim() === 'undefined'
@@ -118,11 +120,11 @@ const AddMember = ({ closeBtn, memberList }) => {
           </div>
         )}
       </div>
-      {/* <div>{memberList.map((obj, idx) => {
-        return <div className="member-list" key={idx}>
-          {obj}
-        </div>
-      })}</div> */}
+      <div>{memberList.map((obj, idx) =>
+      (<div className="member-list" key={idx}>
+        <div>{obj.uid}</div>
+      </div>)
+      )}</div>
     </>
   )
 }
