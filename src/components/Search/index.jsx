@@ -1,15 +1,21 @@
-import React, { useState, useEffect, useImperativeHandle, forwardRef,} from 'react';
+import React, { useState, useEffect, useImperativeHandle, forwardRef, } from 'react';
 import InputPlacholder from '../input/inputPlacholder';
 import { ClearTextIcon, SearchIcons } from '../input/inputIcons';
 import { getAllUsers } from '../../api/api';
 import userProfileStore from '../../store/userProfile';
 import useReceiverStore from '../../store/receiverProfile';
 import useContactsStore from '../../store/userContacts';
+import allUsersStore from '../../store/allUsers';
 
-const Search = forwardRef(({}, ref) => {
+const Search = forwardRef(({ }, ref) => {
   const [userInput, setUserInput] = useState('');
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [allUsers, setAllUsers] = useState([]);
+  const { allAvailableUsers, generateUsers } = allUsersStore((state) => ({
+    allAvailableUsers: state.allAvailableUsers,
+    generateUsers: state.generateUsers,
+    clearUsers: state.clearUsers,
+  }))
   const addContact = useContactsStore((state) => state.addContact)
   const contacts = useContactsStore((state) => state.contacts)
   const { receiver, overwriteReceiver, clearReceiver } = useReceiverStore(
@@ -17,7 +23,7 @@ const Search = forwardRef(({}, ref) => {
       receiver: state.receiver,
       overwriteReceiver: state.overwriteReceiver,
       clearReceiver: state.clearReceiver,
-  })) 
+    }))
 
   const { profile, overwriteProfile, clearProfile } = userProfileStore(
     state => ({
@@ -30,18 +36,19 @@ const Search = forwardRef(({}, ref) => {
   useEffect(() => {
     LoadUsers();
   }, []);
-  
+
   const LoadUsers = async () => {
     await setAllUsers([]);
     const arrVal = await getAllUsers(profile);
     await setAllUsers(arrVal);
+    await generateUsers(arrVal)
   };
 
   useEffect(() => {
     userInput.trim() === '' || userInput.trim() === 'undefined'
       ? setShowSearchResult(false)
       : setShowSearchResult(true);
-    return () => {};
+    return () => { };
   }, [userInput]);
 
   const onChangeInput = e => {
@@ -49,20 +56,20 @@ const Search = forwardRef(({}, ref) => {
     setUserInput(e.target.value);
   };
 
-  const thisisCode = ({uid, id}) => { 
+  const thisisCode = ({ uid, id }) => {
     const receiverInfo = {
       receiver_id: id,
-      receiver_uid: uid,
+      name: uid,
     };
-     const contactInfo = {  
+    const contactInfo = {
       contact_id: id,
       contact_uid: uid,
     }
-   overwriteReceiver(receiverInfo);
-   addContact(contactInfo);
-   setUserInput('')
-   location.reload();
-  //  setInterval( setUserInput(''),2000)
+    overwriteReceiver(receiverInfo);
+    addContact(contactInfo);
+    setUserInput('')
+    location.reload();
+    //  setInterval( setUserInput(''),2000)
   };
   return (
     <div className="search-input-container">
@@ -105,7 +112,7 @@ const Search = forwardRef(({}, ref) => {
                       <div
                         style={{ padding: '0 0.5rem' }}
                         data-usercode={obj.id}
-                        onClick={()=>{thisisCode({uid: obj.uid, id: obj.id})}}
+                        onClick={() => { thisisCode({ uid: obj.uid, id: obj.id }) }}
                       >
                         <div>{obj.uid}</div>
                       </div>
