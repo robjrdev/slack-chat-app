@@ -7,7 +7,7 @@ import useReceiverStore from '../../store/receiverProfile';
 import useContactsStore from '../../store/userContacts';
 import useAllUsersStore from '../../store/allUsers';
 
-const Search = forwardRef(({ }, ref) => {
+const Search = forwardRef(({ref}) => {
   const [userInput, setUserInput] = useState('');
   const [showSearchResult, setShowSearchResult] = useState(false);
   const [allUsers, setAllUsers] = useState([]);

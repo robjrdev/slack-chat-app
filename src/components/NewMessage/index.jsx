@@ -91,8 +91,9 @@ export const NewMessage = () => {
           <p className='recipient-name flex-row' style={{ marginLeft: '.5rem' }}>{!receiver ? '' : receiver.name} </p>
         </div>
         {isShown && <PopUpModal clickBlur={clickBlur}><AddMember memberList={filteredMembers} closeBtn={closeModal} /></PopUpModal>}
-
-        {receiver.class === 'Channel' && <RoundedButton displayText='+' buttonClick={toggleModal} />}
+      
+        
+        { (!_.isEmpty(receiver)) && receiver.class === 'Channel' && <RoundedButton displayText='+' buttonClick={toggleModal} />}
       </div>
       <div className="conversation flex-column">
         <Conversation receiver_id={receiver && receiver.receiver_id} />
